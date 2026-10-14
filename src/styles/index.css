@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/*
+  Design tokens for the "Repair Slip" concept.
+  Tailwind v4 turns each --color-* into utilities: bg-paper, text-ink, border-ink, ...
+
+  Contrast rules (from our review):
+  - Small text is ALWAYS ink (navy) on paper.
+  - slip-amber is a FILL colour only, with ink text on top.
+  - stamp-red / stamp-green are only for big bold stamps (20px+), never for small text.
+*/
+@theme {
+  --color-paper: #F4EBD9;
+  --color-paper-deep: #EADFC8;
+  --color-ink: #1F2A44;
+  --color-stamp-red: #C8352B;
+  --color-stamp-green: #2F7D5B;
+  --color-slip-amber: #D99A22;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* The one meaningful animation: a rubber stamp "thump" when a status is shown/changed. */
+  --animate-stamp: stamp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+
+  @keyframes stamp {
+    0% {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(0.94);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+}
+
+/* Respect users who turn animations off in their device settings. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-stamp {
+    animation: none;
+  }
+}

@@ -177,3 +177,12 @@ commit. Never leave a half-done feature on `main`. If Tier 1 is not live by Oct 
 - [ ] Vercel live link
 - [ ] README (what it is, how to run, demo passcode, limits, how AI was used)
 - [ ] Brief description of how AI was used (from CLAUDE_CODE_LOG.md)
+
+## 12. Progress (updated Oct 15)
+
+- [x] Step 1 skeleton, Step 2 student form + photo + timeline, Step 3 admin dashboard + report  (Tier 1 code complete)
+- [x] Deployed to Vercel (Oct 15)
+- [x] Step 4: technician assignment, "Switch role", navy primary button, group-coloured bars, text contrast, print colours
+- [ ] Tier 2 left: 5-star rating after Resolved, toast notifications, before/after photo,
+      insights (recurring flag, slowest pending, hotspot grid)
+- [ ] README (screenshots, live link), final log entries, final deploy, submit on the evening of Oct 18

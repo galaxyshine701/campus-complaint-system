@@ -16,6 +16,8 @@
   --color-stamp-red: #C8352B;
   --color-stamp-green: #2F7D5B;
   --color-slip-amber: #D99A22;
+  /* Muted blue-grey. Only used as a chart colour (Washroom group), never for text. */
+  --color-steel: #5B6B8C;
 
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "IBM Plex Sans", system-ui, sans-serif;
@@ -45,6 +47,26 @@
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
+  }
+}
+
+/*
+  Placeholder text ("For example: ...") must stay readable. Tailwind's default is 50% ink,
+  which is only 2.9:1 on our paper colour. 70% ink is 5.0:1.
+*/
+@layer base {
+  ::placeholder {
+    color: color-mix(in srgb, var(--color-ink) 70%, transparent);
+    opacity: 1;
+  }
+}
+
+/* Browsers skip background colours when printing. Keep them for the chart bars, legend and stamps. */
+@media print {
+  .keep-print-color,
+  .keep-print-color * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
 

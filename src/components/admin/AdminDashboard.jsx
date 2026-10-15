@@ -18,7 +18,7 @@ const buttonClass =
   'rounded-md border-2 border-ink px-3 py-1.5 text-sm font-semibold hover:bg-paper-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink'
 
 export default function AdminDashboard() {
-  const { complaints, resetDemo, updateStatus } = useApp()
+  const { complaints, resetDemo, updateStatus, assignTechnician } = useApp()
   const [filters, setFilters] = useState(NO_FILTERS)
   const [message, setMessage] = useState('')
 
@@ -38,6 +38,21 @@ export default function AdminDashboard() {
     if (result.changed) {
       const label = STATUSES.find((s) => s.id === status)?.label || status
       setMessage(id + ' moved to ' + label + '.')
+    }
+  }
+
+  function handleAssign(id, name) {
+    const result = assignTechnician(id, name)
+    if (!result.ok) {
+      setMessage(
+        result.quota
+          ? 'Browser storage is full, so the change was not saved. Use "Reset demo" to free space.'
+          : 'Could not save the change. Please try again.',
+      )
+      return
+    }
+    if (result.changed) {
+      setMessage(name ? id + ' assigned to ' + name + '.' : id + ' is now unassigned.')
     }
   }
 
@@ -67,7 +82,7 @@ export default function AdminDashboard() {
               type="button"
               onClick={() => downloadCsv(visible)}
               disabled={visible.length === 0}
-              className={buttonClass + ' disabled:cursor-not-allowed disabled:opacity-60'}
+              className="rounded-md border-2 border-ink bg-ink px-3 py-1.5 text-sm font-semibold text-paper hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:cursor-not-allowed disabled:opacity-70"
             >
               Download CSV ({visible.length})
             </button>
@@ -134,7 +149,11 @@ export default function AdminDashboard() {
               visible.map((c) => (
                 <SlipCard key={c.id} complaint={c}>
                   <StatusTimeline complaint={c} />
-                  <AdminControls complaint={c} onStatusChange={handleStatusChange} />
+                  <AdminControls
+                    complaint={c}
+                    onStatusChange={handleStatusChange}
+                    onAssign={handleAssign}
+                  />
                 </SlipCard>
               ))
             )}

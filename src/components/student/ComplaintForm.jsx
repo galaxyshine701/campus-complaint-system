@@ -40,7 +40,7 @@ function validate(form) {
 }
 
 const inputClass =
-  'mt-1 w-full rounded-md border-2 border-ink bg-paper px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:opacity-60'
+  'mt-1 w-full rounded-md border-2 border-ink bg-paper px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:cursor-not-allowed disabled:opacity-70'
 const labelClass = 'block text-sm font-semibold'
 const chipClass =
   'flex cursor-pointer items-center justify-center rounded-md border-2 border-ink px-3 py-2 text-sm font-semibold has-[:checked]:bg-ink has-[:checked]:text-paper has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ink'

@@ -46,7 +46,7 @@ export default function PhotoPicker({ photos, onChange }) {
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={busy || full}
-          className="rounded-md border-2 border-ink px-3 py-2 text-sm font-semibold hover:bg-paper-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-md border-2 border-ink px-3 py-2 text-sm font-semibold hover:bg-paper-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink disabled:cursor-not-allowed disabled:opacity-70"
         >
           {busy ? 'Preparing photo...' : '📷 Add photo'}
         </button>

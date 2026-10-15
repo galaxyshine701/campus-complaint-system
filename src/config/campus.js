@@ -35,6 +35,19 @@ export const TECHNICIANS = [
   'Plumber Imran',
 ]
 
+// Which technician usually handles which category. Only a SUGGESTION shown in the admin dropdown;
+// the admin still chooses.
+export const SUGGESTED_TECHNICIAN = {
+  computer: 'IT Support Bilal',
+  projector: 'IT Support Bilal',
+  wifi: 'IT Support Bilal',
+  fan: 'Electrician Asif',
+  light: 'Electrician Asif',
+  ac: 'Electrician Asif',
+  facilities: 'Carpenter Rashid',
+  washroom: 'Plumber Imran',
+}
+
 export const STATUSES = [
   { id: 'pending', label: 'Pending' },
   { id: 'in_progress', label: 'In Progress' },

@@ -61,7 +61,9 @@ export default function SlipCard({ complaint, children }) {
       <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-ink px-2 py-0.5">
           <span
-            className={'h-2.5 w-2.5 rounded-full ' + (URGENCY_DOT[complaint.urgency] || 'bg-ink')}
+            className={
+              'keep-print-color h-2.5 w-2.5 rounded-full ' + (URGENCY_DOT[complaint.urgency] || 'bg-ink')
+            }
             aria-hidden="true"
           />
           {urgency?.label || complaint.urgency} urgency

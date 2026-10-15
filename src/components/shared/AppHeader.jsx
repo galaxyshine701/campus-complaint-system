@@ -23,7 +23,7 @@ export default function AppHeader({ subtitle, wide = false }) {
             onClick={logout}
             className="rounded-md border-2 border-ink px-3 py-1.5 font-semibold hover:bg-paper-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
-            Log out
+            Switch role
           </button>
         </div>
       </div>

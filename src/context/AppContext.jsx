@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState } from 'react'
-import { DEMO_ADMIN_PASSCODE } from '../config/campus.js'
+import { DEMO_ADMIN_PASSCODE, TECHNICIANS } from '../config/campus.js'
 import { KEYS, read, write, remove, getDeviceId } from '../lib/storage.js'
 import { seedIfNeeded, resetDemo as resetDemoData } from '../lib/seed.js'
 import { buildComplaint, nextSlipNumber, saveNewComplaint } from '../lib/complaints.js'
@@ -82,6 +82,25 @@ export function AppProvider({ children }) {
     return { ok: true, changed: true }
   }
 
+  // Admin: give a complaint to a technician. An empty name means "unassigned".
+  function assignTechnician(id, name) {
+    const target = complaints.find((c) => c.id === id)
+    const wanted = name || null
+    if (!target || (target.assignedTo || null) === wanted) return { ok: true, changed: false }
+    // Only names from the technician list are accepted (the dropdown cannot send anything else).
+    if (wanted !== null && !TECHNICIANS.includes(wanted)) return { ok: false, quota: false }
+
+    const now = new Date().toISOString()
+    const next = complaints.map((c) =>
+      c.id === id ? { ...c, assignedTo: wanted, updatedAt: now } : c,
+    )
+
+    const result = write(KEYS.complaints, next)
+    if (!result.ok) return { ok: false, quota: Boolean(result.quota) }
+    setComplaints(next)
+    return { ok: true, changed: true }
+  }
+
   const value = {
     session,
     complaints,
@@ -92,6 +111,7 @@ export function AppProvider({ children }) {
     resetDemo,
     addComplaint,
     updateStatus,
+    assignTechnician,
   }
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }

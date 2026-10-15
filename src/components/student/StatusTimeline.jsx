@@ -9,7 +9,7 @@ export default function StatusTimeline({ complaint }) {
   const last = STATUSES.length - 1
 
   return (
-    <ol className="mt-4 grid grid-cols-3 gap-2" aria-label="Complaint progress">
+    <ol className="keep-print-color mt-4 grid grid-cols-3 gap-2" aria-label="Complaint progress">
       {STATUSES.map((step, index) => {
         const reached = index <= currentIndex
         const entry = [...history].reverse().find((h) => h.status === step.id)

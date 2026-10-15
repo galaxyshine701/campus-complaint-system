@@ -87,6 +87,19 @@ export const CATEGORIES = [
   },
 ]
 
+// Chart colour for each group of categories (used by the admin bars and their legend).
+// Written as full class names so Tailwind can find them. Amber is a fill only (never text).
+export const GROUPS = [
+  { id: 'IT & Lab', barClass: 'bg-ink' },
+  { id: 'Electrical', barClass: 'bg-slip-amber' },
+  { id: 'Campus Facilities', barClass: 'bg-stamp-green' },
+  { id: 'Washroom & Cleanliness', barClass: 'bg-steel' },
+]
+
+export function getGroupBarClass(groupId) {
+  return GROUPS.find((g) => g.id === groupId)?.barClass || 'bg-ink'
+}
+
 export function getCategory(id) {
   return CATEGORIES.find((c) => c.id === id) || null
 }

@@ -52,3 +52,25 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   (numbers, filters, sort order, status change + history + refresh, CSV content, print view, anonymous never named,
   no device ids on screen) on top of the 34 student checks from Step 2. Still not checked with `npm run dev` there.
 - **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+
+## Step 4 — Technician assignment + design polish (Oct 15)
+
+- **What I asked:** after Step 3 worked and was deployed to Vercel, I noticed that demo slips show an assigned
+  technician but the admin screen had no way to assign one. I also had design feedback (button colour,
+  chart colours, text contrast) and asked Claude whether each point was right.
+- **What Claude changed:**
+  - Technician: an "Assign technician" dropdown on every slip (the usual technician for the category is marked
+    "(suggested)"), a warning on slips that are In Progress with nobody assigned, and the name in the CSV report.
+  - "Log out" is now "Switch role", because that is what the button does.
+  - "Download CSV" is the one solid navy button on the admin screen.
+  - Category bars are coloured by group (IT & Lab navy, Electrical amber, Facilities green, Washroom steel-blue)
+    with a legend. The count and percentage stay as text, so colour is never the only information.
+  - Claude checked the contrast numbers instead of just accepting the feedback: timestamps were already dark
+    navy (13:1), so they were NOT changed to grey. The real weak spots were placeholder text (2.9:1) and disabled
+    dropdowns (3.8:1); both are now about 5:1.
+  - Print: browsers drop background colours when printing, so bars, legend, stamps, timeline and urgency dots now
+    keep their colours on paper (checked on a real PDF).
+- **How it was checked:** Claude ran 27 + 34 + 34 browser checks in its own workspace (technician assign/unassign,
+  warning, refresh, CSV column, bar colours, legend, button colours, placeholder, print PDF). Still not run
+  with `npm run dev` there.
+- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_

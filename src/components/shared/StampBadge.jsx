@@ -26,7 +26,7 @@ export default function StampBadge({ status }) {
 
   return (
     // The tilt lives on the outer span; the inner span animates (a transform on both would clash).
-    <span className="inline-block -rotate-3">
+    <span className="keep-print-color inline-block -rotate-3">
       <span
         key={status}
         className={

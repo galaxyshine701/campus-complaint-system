@@ -27,6 +27,7 @@ export function computeStats(list) {
         id,
         label: category ? category.label : id,
         icon: category ? category.icon : '❔',
+        group: category ? category.group : '',
         count,
         share,
         percent: Math.round(share),

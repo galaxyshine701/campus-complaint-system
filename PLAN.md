@@ -92,7 +92,8 @@ src/
     complaints.js            build + save a new complaint, retry without photos if storage is full (Step 2)
     format.js                date display helper (Step 2)
     insights.js              (Step 7) hotspots, recurring, slowest pending
-    report.js                (Step 4) CSV export
+    report.js                CSV export, formula-safe, anonymous shown as "Anonymous" (done in Step 3)
+    stats.js                 totals, category percentages, filtering, admin sort order (Step 3)
   context/
     AppContext.jsx           session + complaints + actions
   components/
@@ -100,8 +101,8 @@ src/
     gate/     RoleGate, AdminPasscode
     student/  StudentHome, ComplaintForm, CategoryPicker,    (done in Step 2)
               PhotoPicker, StatusTimeline                    (later: RatingStars)
-    admin/    AdminDashboard (placeholder)                   (later: StatsCards, CategoryBars, Filters,
-                                                              SlipList, ComplaintDrawer, InsightsPanel, HotspotGrid)
+    admin/    AdminDashboard, StatsCards, CategoryBars,      (done in Step 3)
+              AdminFilters, AdminControls                    (later: InsightsPanel, HotspotGrid, technician select)
 ```
 
 ## 7. One complaint (JSON)

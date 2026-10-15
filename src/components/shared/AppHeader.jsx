@@ -1,12 +1,17 @@
 import { useApp } from '../../context/AppContext.jsx'
 
-// Top bar used by both the student and admin screens.
-export default function AppHeader({ subtitle }) {
+// Top bar used by both the student and admin screens. Hidden when printing a report.
+export default function AppHeader({ subtitle, wide = false }) {
   const { session, logout } = useApp()
 
   return (
-    <header className="border-b-2 border-ink">
-      <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3">
+    <header className="border-b-2 border-ink print:hidden">
+      <div
+        className={
+          'mx-auto flex items-center justify-between gap-3 px-4 py-3 ' +
+          (wide ? 'max-w-5xl' : 'max-w-3xl')
+        }
+      >
         <div>
           <h1 className="font-display text-2xl font-extrabold leading-none">Repair Slip</h1>
           <p className="mt-1 font-mono text-xs">{subtitle}</p>

@@ -40,3 +40,15 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   3-photo limit, anonymous complaint keeps the device id but no name, refresh keeps data,
   storage-full behaviour, admin passcode, Reset demo, no horizontal scroll at 390px.
 - **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+
+## Step 3 — Admin dashboard: stats, filters, status change, report (Oct 15)
+
+- **What I asked:** after Step 2 worked on my laptop (form filed, slip showed in My complaints), build the admin side.
+- **What Claude built:** stats cards (total / pending / in progress / resolved), category percentage bars made
+  only with Tailwind boxes, filters (status, category, urgency), a status dropdown on every slip that saves
+  the change and adds it to the slip history, CSV download, and a print-friendly report.
+  The stamp on a slip "thumps" only when its status changes, not every time the list is redrawn.
+- **How it was checked:** Claude ran the app in a real browser in its own workspace and tested 34 admin checks
+  (numbers, filters, sort order, status change + history + refresh, CSV content, print view, anonymous never named,
+  no device ids on screen) on top of the 34 student checks from Step 2. Still not checked with `npm run dev` there.
+- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_

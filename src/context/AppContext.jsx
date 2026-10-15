@@ -65,6 +65,23 @@ export function AppProvider({ children }) {
     return result
   }
 
+  // Admin: move a complaint to another status. Saves the change and adds it to the slip's history.
+  function updateStatus(id, status) {
+    const target = complaints.find((c) => c.id === id)
+    if (!target || target.status === status) return { ok: true, changed: false }
+
+    const now = new Date().toISOString()
+    const history = Array.isArray(target.history) ? target.history : []
+    const next = complaints.map((c) =>
+      c.id === id ? { ...c, status, updatedAt: now, history: [...history, { status, at: now }] } : c,
+    )
+
+    const result = write(KEYS.complaints, next)
+    if (!result.ok) return { ok: false, quota: Boolean(result.quota) }
+    setComplaints(next)
+    return { ok: true, changed: true }
+  }
+
   const value = {
     session,
     complaints,
@@ -74,6 +91,7 @@ export function AppProvider({ children }) {
     logout,
     resetDemo,
     addComplaint,
+    updateStatus,
   }
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }

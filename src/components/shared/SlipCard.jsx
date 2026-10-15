@@ -20,7 +20,7 @@ export default function SlipCard({ complaint, children }) {
   const photos = Array.isArray(complaint.photos) ? complaint.photos : []
 
   return (
-    <article className="rounded-md border-2 border-ink bg-white/40 p-4 shadow-[3px_3px_0_0_var(--color-ink)]">
+    <article className="break-inside-avoid rounded-md border-2 border-ink bg-white/40 p-4 shadow-[3px_3px_0_0_var(--color-ink)]">
       <div className="flex items-start justify-between gap-3">
         <p className="font-mono text-sm font-semibold">{complaint.id}</p>
         <StampBadge status={complaint.status} />

@@ -88,7 +88,9 @@ src/
   lib/
     storage.js               safe localStorage read/write, quota error handling, device id
     seed.js                  demo complaints + resetDemo()
-    image.js                 (Step 2) compress photo to ~600px JPEG
+    image.js                 compress photo to ~600px JPEG (done in Step 2)
+    complaints.js            build + save a new complaint, retry without photos if storage is full (Step 2)
+    format.js                date display helper (Step 2)
     insights.js              (Step 7) hotspots, recurring, slowest pending
     report.js                (Step 4) CSV export
   context/
@@ -96,8 +98,8 @@ src/
   components/
     shared/   AppHeader, SlipCard, StampBadge, EmptyState   (later: Toast, BeforeAfter)
     gate/     RoleGate, AdminPasscode
-    student/  StudentHome (placeholder)                      (later: ComplaintForm, CategoryPicker,
-                                                              PhotoPicker, MyComplaints, StatusTimeline, RatingStars)
+    student/  StudentHome, ComplaintForm, CategoryPicker,    (done in Step 2)
+              PhotoPicker, StatusTimeline                    (later: RatingStars)
     admin/    AdminDashboard (placeholder)                   (later: StatsCards, CategoryBars, Filters,
                                                               SlipList, ComplaintDrawer, InsightsPanel, HotspotGrid)
 ```

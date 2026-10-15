@@ -26,3 +26,17 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   I must run `npm install` and `npm run dev` myself and report any error.
 - **What I understood / changed:** _(write 2-3 lines here after you run it: what opened, what you
   changed, what you learned)_
+
+## Step 2 — Complaint form, real photo upload, My Complaints timeline (Oct 15)
+
+- **What I asked:** continue the build; I wanted to finish the app before deploying to Vercel.
+- **What Claude built:** `ComplaintForm` (category icon buttons, problem, block + room dropdowns, title,
+  description, urgency, anonymous checkbox), `PhotoPicker` + `lib/image.js` (real upload, shrunk to
+  600px JPEG before saving, max 3 photos), `lib/complaints.js` (saves the complaint; if browser storage is
+  full it saves the complaint without photos and warns), `StatusTimeline` (Pending, In Progress, Resolved),
+  and a student screen that lists only my own complaints.
+- **How it was checked:** Claude ran the app in a real browser in its own workspace (not with `npm run dev`
+  there, because its npm registry was blocked) and tested 34 things: empty form errors, photo shrinking,
+  3-photo limit, anonymous complaint keeps the device id but no name, refresh keeps data,
+  storage-full behaviour, admin passcode, Reset demo, no horizontal scroll at 390px.
+- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_

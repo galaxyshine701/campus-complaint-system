@@ -74,3 +74,37 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   warning, refresh, CSV column, bar colours, legend, button colours, placeholder, print PDF). Still not run
   with `npm run dev` there.
 - **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+
+## Step 4b — Fixing the Vercel deploy (Oct 15-16)
+
+- **What happened:** after I pushed Step 4 to GitHub, the live site still showed the old version.
+  Claude helped me read my screenshots instead of guessing. The Vercel project was connected to a different repo
+  (`campus-complaints-system`, with an "s", with one "Initial commit") that Vercel had created by itself.
+  My real work was in `campus-complaint-system`, without the "s".
+- **What I did:** disconnected Vercel from the wrong repo, connected it to the real one, and pushed an empty commit
+  to start a deploy. Then I checked on the live link that "Switch role" and "Assign technician" appear.
+- **What I understood / changed:** _(write 2-3 lines here: what a Vercel project is versus a GitHub repo,
+  and why the live site only updates when Vercel is connected to the repo I push to)_
+
+## Step 5 — Rating, notifications, rounding fix (Oct 16)
+
+- **What I asked:** the next Tier 2 features from my plan: a 5-star rating after a complaint is Resolved,
+  a message to the student when the admin changes the status, and a fix for percentages adding up to 103%.
+- **What Claude built:**
+  - Rating: only on my own Resolved slip, only once. Choosing stars does not save; "Send rating" does, so a
+    slip of the thumb on a phone cannot lock in a wrong rating. The admin sees the stars on the slip, the average
+    ("4.5 / 5 from 2 ratings") and a rating column in the CSV. Stars are text (★ and ☆) with the number next to
+    them, so they also work on a black-and-white printout.
+  - Notifications: each status change leaves a message for the student who reported it (anonymous students too,
+    because it uses the device id, never the name). The student gets a toast for 8 seconds and an "Updates" box
+    with a NEW tag until "Mark all as read". The admin never sees these messages.
+  - Percentages: the numbers on the category bars now always add up to exactly 100.
+  - Two tabs of one browser stay in sync, so the admin tab and the student tab can be tried side by side.
+- **How it was checked:** Claude ran the earlier 96 browser checks again (all still pass) and wrote new ones for
+  this step: the full loop student files, admin resolves, student gets the toast, rates, admin sees the rating;
+  rating once only; storage full while rating; another person's slip does not notify me; corrupt notification data
+  does not break the app; Reset demo clears notifications; star buttons are 44 px; no sideways scroll at 390 px.
+  Still not run with `npm run dev` in Claude's own workspace (its npm registry is blocked); I run that myself.
+- **Limit I must say in the README:** notifications and ratings live in one browser. A student on a different phone
+  receives nothing, because there is no backend.
+- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_

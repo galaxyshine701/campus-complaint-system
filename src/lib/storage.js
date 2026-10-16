@@ -12,6 +12,11 @@ export const KEYS = {
   counter: 'counter',
 }
 
+// The real localStorage key (with the prefix). The "storage" event reports keys in this form.
+export function storageKey(key) {
+  return PREFIX + key
+}
+
 export function read(key, fallback) {
   try {
     const raw = localStorage.getItem(PREFIX + key)

@@ -91,16 +91,20 @@ src/
     image.js                 compress photo to ~600px JPEG (done in Step 2)
     complaints.js            build + save a new complaint, retry without photos if storage is full (Step 2)
     format.js                date display helper (Step 2)
+    rating.js                is a complaint rated, may this device rate it (Step 5)
+    notifications.js         build / load / cap / mark read, for the reporter's device (Step 5)
     insights.js              (Step 7) hotspots, recurring, slowest pending
     report.js                CSV export, formula-safe, anonymous shown as "Anonymous" (done in Step 3)
     stats.js                 totals, category percentages, filtering, admin sort order (Step 3)
   context/
     AppContext.jsx           session + complaints + actions
   components/
-    shared/   AppHeader, SlipCard, StampBadge, EmptyState   (later: Toast, BeforeAfter)
+    shared/   AppHeader, SlipCard, StampBadge, EmptyState,   (Toast, StarsDisplay done in Step 5)
+              Toast, StarsDisplay                            (later: BeforeAfter)
     gate/     RoleGate, AdminPasscode
     student/  StudentHome, ComplaintForm, CategoryPicker,    (done in Step 2)
-              PhotoPicker, StatusTimeline                    (later: RatingStars)
+              PhotoPicker, StatusTimeline,
+              RatingStars, UpdatesPanel                      (done in Step 5)
     admin/    AdminDashboard, StatsCards, CategoryBars,      (done in Step 3)
               AdminFilters, AdminControls                    (later: InsightsPanel, HotspotGrid, technician select)
 ```
@@ -183,6 +187,19 @@ commit. Never leave a half-done feature on `main`. If Tier 1 is not live by Oct 
 - [x] Step 1 skeleton, Step 2 student form + photo + timeline, Step 3 admin dashboard + report  (Tier 1 code complete)
 - [x] Deployed to Vercel (Oct 15)
 - [x] Step 4: technician assignment, "Switch role", navy primary button, group-coloured bars, text contrast, print colours
-- [ ] Tier 2 left: 5-star rating after Resolved, toast notifications, before/after photo,
-      insights (recurring flag, slowest pending, hotspot grid)
+- [x] Vercel fixed (Oct 16): it had made its own second repo (`campus-complaints-system`, with an "s"); it now deploys
+      from the real repo `campus-complaint-system`. Step 4 confirmed working on the live link.
+- [x] Step 5 (Oct 16): 5-star rating after Resolved (once, student only), notifications + toast for the reporter,
+      average rating + CSV column for the admin, percentages that always add up to 100.
+- [ ] Tier 2 left: before/after photo, insights (recurring flag, slowest pending, hotspot grid)
 - [ ] README (screenshots, live link), final log entries, final deploy, submit on the evening of Oct 18
+
+### How rating and notifications behave (so the README can say it)
+
+- A student can rate only a Resolved slip from the same browser, once. Picking stars only selects; "Send rating" saves.
+  A reopened slip keeps its rating, and a second rating is never offered.
+- Every status change by the admin leaves one notification addressed to the reporter's device id
+  (anonymous reporters included). The student sees a toast (8 seconds, can be closed) and an "Updates" box
+  until "Mark all as read". The admin screens never show notifications or device ids.
+- It all lives in this browser's localStorage. Two tabs of the same browser stay in sync through the `storage` event.
+  A student on another phone will NOT receive anything, because there is no backend.

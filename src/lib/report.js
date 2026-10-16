@@ -3,6 +3,7 @@
 
 import { getCategory, getIssueLabel } from '../config/categories.js'
 import { getBlock, STATUSES, URGENCIES } from '../config/campus.js'
+import { isRated } from './rating.js'
 
 const COLUMNS = [
   ['Slip', (c) => c.id],
@@ -15,6 +16,7 @@ const COLUMNS = [
   ['Urgency', (c) => URGENCIES.find((u) => u.id === c.urgency)?.label || c.urgency],
   ['Status', (c) => STATUSES.find((s) => s.id === c.status)?.label || c.status],
   ['Assigned to', (c) => c.assignedTo || ''],
+  ['Student rating (1-5)', (c) => (isRated(c) ? c.rating : '')],
   ['Reported by', (c) => (c.isAnonymous ? 'Anonymous' : c.reporterName || '')],
   ['Photos', (c) => (Array.isArray(c.photos) ? c.photos.length : 0)],
   ['Reported at', (c) => c.createdAt],

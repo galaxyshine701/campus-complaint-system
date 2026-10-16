@@ -99,6 +99,16 @@ export default function AdminDashboard() {
           <StatsCards stats={stats} />
         </div>
 
+        <p className="mt-3 text-sm">
+          <span className="font-semibold">Repair rating: </span>
+          {stats.rating.count > 0
+            ? stats.rating.average.toFixed(1) +
+              ' / 5 from ' +
+              stats.rating.count +
+              (stats.rating.count === 1 ? ' rating' : ' ratings')
+            : 'No ratings yet. Students can rate a repair once it is Resolved.'}
+        </p>
+
         <section aria-labelledby="by-category-heading" className="mt-6">
           <h2 id="by-category-heading" className="font-display text-xl font-extrabold">
             Complaints by category

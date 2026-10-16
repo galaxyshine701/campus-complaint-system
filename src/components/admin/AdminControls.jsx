@@ -1,5 +1,7 @@
 import { STATUSES, SUGGESTED_TECHNICIAN, TECHNICIANS } from '../../config/campus.js'
 import { formatDateTime } from '../../lib/format.js'
+import { isRated } from '../../lib/rating.js'
+import StarsDisplay from '../shared/StarsDisplay.jsx'
 
 const selectClass =
   'mt-1 w-full rounded-md border-2 border-ink bg-paper px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink'
@@ -22,6 +24,13 @@ export default function AdminControls({ complaint, onStatusChange, onAssign }) {
         Reported by <span className="font-semibold">{reporter}</span> on{' '}
         {formatDateTime(complaint.createdAt)}
       </p>
+
+      {(complaint.status === 'resolved' || isRated(complaint)) && (
+        <p className="mt-2 text-sm">
+          <span className="font-semibold">Student rating: </span>
+          {isRated(complaint) ? <StarsDisplay value={complaint.rating} /> : 'Not rated yet'}
+        </p>
+      )}
 
       {complaint.status === 'in_progress' && !complaint.assignedTo && (
         <p className="mt-2 text-sm font-semibold">

@@ -8,7 +8,9 @@ const selectClass =
 
 // The admin's part of a slip: who reported it, the status dropdown and the technician dropdown.
 // Anonymous reporters are never named here (and the device id is never shown).
-export default function AdminControls({ complaint, onStatusChange, onAssign }) {
+// `recurring` is the group this slip belongs to when the same problem was reported in the same room
+// 3 or more times (see lib/insights.js), otherwise null.
+export default function AdminControls({ complaint, recurring = null, onStatusChange, onAssign }) {
   const statusId = 'status-' + complaint.id
   const techId = 'tech-' + complaint.id
   const reporter = complaint.isAnonymous ? 'Anonymous' : complaint.reporterName || 'Unknown'
@@ -24,6 +26,13 @@ export default function AdminControls({ complaint, onStatusChange, onAssign }) {
         Reported by <span className="font-semibold">{reporter}</span> on{' '}
         {formatDateTime(complaint.createdAt)}
       </p>
+
+      {recurring && (
+        <p className="mt-2 text-sm font-semibold">
+          <span aria-hidden="true">⚠ </span>
+          Same problem reported {recurring.count} times in this room ({recurring.ids.join(', ')}).
+        </p>
+      )}
 
       {(complaint.status === 'resolved' || isRated(complaint)) && (
         <p className="mt-2 text-sm">

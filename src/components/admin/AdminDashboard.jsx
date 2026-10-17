@@ -3,6 +3,7 @@ import { useApp } from '../../context/AppContext.jsx'
 import { STATUSES } from '../../config/campus.js'
 import { computeStats, filterComplaints, sortForAdmin } from '../../lib/stats.js'
 import { downloadCsv } from '../../lib/report.js'
+import { buildHotspots, findRecurring, recurringById, slowestPending } from '../../lib/insights.js'
 import AppHeader from '../shared/AppHeader.jsx'
 import EmptyState from '../shared/EmptyState.jsx'
 import SlipCard from '../shared/SlipCard.jsx'
@@ -11,6 +12,7 @@ import StatsCards from './StatsCards.jsx'
 import CategoryBars from './CategoryBars.jsx'
 import AdminFilters from './AdminFilters.jsx'
 import AdminControls from './AdminControls.jsx'
+import InsightsPanel from './InsightsPanel.jsx'
 
 const NO_FILTERS = { status: '', category: '', urgency: '' }
 
@@ -24,6 +26,12 @@ export default function AdminDashboard() {
 
   const stats = computeStats(complaints)
   const visible = sortForAdmin(filterComplaints(complaints, filters))
+
+  // Insights are worked out from ALL complaints, not only the filtered ones.
+  const recurring = findRecurring(complaints)
+  const recurringMap = recurringById(recurring)
+  const slowest = slowestPending(complaints)
+  const hotspots = buildHotspots(complaints)
 
   function handleStatusChange(id, status) {
     const result = updateStatus(id, status)
@@ -118,6 +126,13 @@ export default function AdminDashboard() {
           </div>
         </section>
 
+        <InsightsPanel
+          recurring={recurring}
+          slowest={slowest}
+          hotspots={hotspots}
+          pendingCount={stats.pending}
+        />
+
         <section aria-labelledby="slips-heading" className="mt-8">
           <h2 id="slips-heading" className="font-display text-xl font-extrabold">
             All complaints
@@ -161,6 +176,7 @@ export default function AdminDashboard() {
                   <StatusTimeline complaint={c} />
                   <AdminControls
                     complaint={c}
+                    recurring={recurringMap.get(c.id) || null}
                     onStatusChange={handleStatusChange}
                     onAssign={handleAssign}
                   />

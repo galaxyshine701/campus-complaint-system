@@ -108,3 +108,27 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
 - **Limit I must say in the README:** notifications and ratings live in one browser. A student on a different phone
   receives nothing, because there is no backend.
 - **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+
+## Step 6 — Insights for the admin (Oct 17)
+
+- **What I asked:** after rating and notifications worked on my laptop and on the live link, build the three
+  insights from my plan: repeated problems, the longest-waiting complaint, and a hotspot grid by room.
+- **What Claude built:**
+  - "Same problem, again": if the same kind of problem is reported in the same room 3 or more times, it is listed,
+    and every slip in that group shows a warning with the other slip numbers. My demo data already has this case
+    (the fan in Block B, Room 204, reported three times).
+  - "Waiting the longest": the Pending complaint that has waited longest, with how long. A reopened complaint waits
+    from the day it went back to Pending.
+  - "Where it hurts": every room of the campus as a box with its number of open complaints. The number is written
+    in each box and the amber fill only adds to it, so it also works for colour-blind readers and on paper.
+  - Claude made two choices on its own that I should know about: resolved complaints still count as repeats
+    (a fixed fan that breaks again is the whole point), and the insights always use all complaints, not only
+    the ones left after the filters.
+- **How it was checked:** Claude ran all 155 earlier browser checks again (all still pass), and added 35 new browser
+  checks and 39 logic checks: the demo data case, the 2-versus-3 boundary, "Washroom" in different blocks not mixed
+  up, a reopened complaint, a room that is not in the campus list, an empty list, a second tab filing complaints
+  while the admin tab updates by itself, print colours, and no sideways scroll at 390 px.
+  Still not run with `npm run dev` in Claude's own workspace (its npm registry is blocked); I run that myself.
+- **Decision still open:** the before/after photo from my plan. Claude recommends cutting it, because pictures
+  take most of the browser's 5 MB storage, and a half-working photo feature is worse than none.
+- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_

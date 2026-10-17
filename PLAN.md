@@ -93,7 +93,7 @@ src/
     format.js                date display helper (Step 2)
     rating.js                is a complaint rated, may this device rate it (Step 5)
     notifications.js         build / load / cap / mark read, for the reporter's device (Step 5)
-    insights.js              (Step 7) hotspots, recurring, slowest pending
+    insights.js              recurring problems, slowest pending, room hotspots (Step 6)
     report.js                CSV export, formula-safe, anonymous shown as "Anonymous" (done in Step 3)
     stats.js                 totals, category percentages, filtering, admin sort order (Step 3)
   context/
@@ -106,7 +106,8 @@ src/
               PhotoPicker, StatusTimeline,
               RatingStars, UpdatesPanel                      (done in Step 5)
     admin/    AdminDashboard, StatsCards, CategoryBars,      (done in Step 3)
-              AdminFilters, AdminControls                    (later: InsightsPanel, HotspotGrid, technician select)
+              AdminFilters, AdminControls,                   (technician select: Step 4)
+              InsightsPanel                                  (done in Step 6)
 ```
 
 ## 7. One complaint (JSON)
@@ -191,8 +192,23 @@ commit. Never leave a half-done feature on `main`. If Tier 1 is not live by Oct 
       from the real repo `campus-complaint-system`. Step 4 confirmed working on the live link.
 - [x] Step 5 (Oct 16): 5-star rating after Resolved (once, student only), notifications + toast for the reporter,
       average rating + CSV column for the admin, percentages that always add up to 100.
-- [ ] Tier 2 left: before/after photo, insights (recurring flag, slowest pending, hotspot grid)
+- [x] Step 6 (Oct 17): Insights panel for the admin: recurring problems (same room + same category, 3 or more),
+      the Pending complaint that has waited longest, and a room-by-room grid of open complaints.
+- [ ] Tier 2 left: before/after photo (recommended to CUT: it needs real photo storage, and localStorage is only about 5 MB)
 - [ ] README (screenshots, live link), final log entries, final deploy, submit on the evening of Oct 18
+
+### How the Insights work (so the README can say it)
+
+- **Recurring:** complaints are grouped by category + block + room (the block is part of the key, because "Washroom"
+  exists in several blocks). 3 or more in a group is flagged, and every slip in the group shows a warning with the
+  other slip numbers. Resolved complaints count too: a fan that was fixed and broke again is the point.
+  Anonymous complaints count; only slip numbers are shown, never names.
+- **Waiting longest:** the oldest Pending complaint. A complaint that was reopened waits from the day it went back
+  to Pending, not from the day it was first filed.
+- **Hotspots:** every room from `config/campus.js` with its number of open complaints (Pending + In Progress).
+  The number is written in each box; the amber fill only adds to it. A room that is not in the config goes under
+  "Other places", so nothing is lost.
+- The Insights always use ALL complaints, not just the ones left after the filters. They are part of the printed report.
 
 ### How rating and notifications behave (so the README can say it)
 

@@ -1,11 +1,10 @@
 # AI Usage Log
 
-This log becomes the "how I used AI" part of the submission. Write it honestly.
+A record of how AI was used to build this project, step by step.
 
-**Tool used:** Claude (browser chat). My mentor told me to build this assignment with it instead of
-Claude Code, because I do not have Claude Code access. I am NOT claiming that Claude Code was used.
+**Tool used:** Claude (browser chat), as my mentor instructed. Claude Code was not used.
 
-For every step, keep 3 lines: what I asked, what Claude built, what I understood or changed myself.
+Each step lists what I asked, what Claude built, and what I understood or changed myself.
 
 ---
 
@@ -24,8 +23,7 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
 - **What Claude built:** the files in `src/` (see PLAN.md section 6).
   Note: Claude could not run `npm install` in its own workspace, so this step was checked for syntax only.
   I must run `npm install` and `npm run dev` myself and report any error.
-- **What I understood / changed:** _(write 2-3 lines here after you run it: what opened, what you
-  changed, what you learned)_
+- **What I understood / changed:** _I ran npm install and npm run dev on my laptop and the role screen opened. I learned that npm install downloads the libraries and npm run dev starts the app on my computer.
 
 ## Step 2 — Complaint form, real photo upload, My Complaints timeline (Oct 15)
 
@@ -39,7 +37,7 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   there, because its npm registry was blocked) and tested 34 things: empty form errors, photo shrinking,
   3-photo limit, anonymous complaint keeps the device id but no name, refresh keeps data,
   storage-full behaviour, admin passcode, Reset demo, no horizontal scroll at 390px.
-- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+- **What I understood / changed:** I filed a complaint with a photo and saw it under My complaints after a refresh. I learned that the data is saved in the browser (localStorage), not on a server.
 
 ## Step 3 — Admin dashboard: stats, filters, status change, report (Oct 15)
 
@@ -51,7 +49,7 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
 - **How it was checked:** Claude ran the app in a real browser in its own workspace and tested 34 admin checks
   (numbers, filters, sort order, status change + history + refresh, CSV content, print view, anonymous never named,
   no device ids on screen) on top of the 34 student checks from Step 2. Still not checked with `npm run dev` there.
-- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+- **What I understood / changed:**I opened the admin side with the passcode and changed a complaint’s status. I deployed the app to Vercel and the live link worked.
 
 ## Step 4 — Technician assignment + design polish (Oct 15)
 
@@ -73,7 +71,7 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
 - **How it was checked:** Claude ran 27 + 34 + 34 browser checks in its own workspace (technician assign/unassign,
   warning, refresh, CSV column, bar colours, legend, button colours, placeholder, print PDF). Still not run
   with `npm run dev` there.
-- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+- **What I understood / changed:**I noticed that the admin could not assign a technician and gave feedback on the colours and text. I learned to ask Claude to check feedback instead of accepting it, for example the contrast numbers.
 
 ## Step 4b — Fixing the Vercel deploy (Oct 15-16)
 
@@ -83,8 +81,7 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   My real work was in `campus-complaint-system`, without the "s".
 - **What I did:** disconnected Vercel from the wrong repo, connected it to the real one, and pushed an empty commit
   to start a deploy. Then I checked on the live link that "Switch role" and "Assign technician" appear.
-- **What I understood / changed:** _(write 2-3 lines here: what a Vercel project is versus a GitHub repo,
-  and why the live site only updates when Vercel is connected to the repo I push to)_
+- **What I understood / changed:**My live site did not update after I pushed. I found that Vercel was connected to a different GitHub repo, so I connected the right one. I learned that the live site only updates from the repo that Vercel is connected to.
 
 ## Step 5 — Rating, notifications, rounding fix (Oct 16)
 
@@ -107,8 +104,7 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   Still not run with `npm run dev` in Claude's own workspace (its npm registry is blocked); I run that myself.
 - **Limit I must say in the README:** notifications and ratings live in one browser. A student on a different phone
   receives nothing, because there is no backend.
-- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
-
+- **What I understood / changed:**I tested rating and notifications on my laptop and on the live link. I learned that the data stays inside one browser, so another device does not get the messages.
 ## Step 6 — Insights for the admin (Oct 17)
 
 - **What I asked:** after rating and notifications worked on my laptop and on the live link, build the three
@@ -129,6 +125,6 @@ For every step, keep 3 lines: what I asked, what Claude built, what I understood
   up, a reopened complaint, a room that is not in the campus list, an empty list, a second tab filing complaints
   while the admin tab updates by itself, print colours, and no sideways scroll at 390 px.
   Still not run with `npm run dev` in Claude's own workspace (its npm registry is blocked); I run that myself.
-- **Decision still open:** the before/after photo from my plan. Claude recommends cutting it, because pictures
-  take most of the browser's 5 MB storage, and a half-working photo feature is worse than none.
-- **What I understood / changed:** _(write 2-3 lines here after you try it on your computer)_
+- **Decision made (my call):** I cut the before/after photo from my plan. Claude advised it, because pictures
+  take most of the browser's 5 MB storage, and a half-working photo feature is worse than none. I agreed.
+- **What I understood / changed:**The Insights panel appeared on the admin screen. I learned that the same kind of problem in the same room is flagged when it is reported 3 or more times.

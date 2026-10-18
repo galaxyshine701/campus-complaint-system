@@ -171,7 +171,7 @@ Allowed values: `status` = pending | in_progress | resolved; `urgency` = high | 
 - **Oct 15:** project setup (this step), Vercel skeleton deploy, then complaint form + categories.
 - **Oct 16:** photo upload, admin list/filters/status, stats + report, responsive. **Tier 1 live by night.**
 - **Oct 17:** technician, rating, recurring flag, slowest pending, hotspot grid, then before/after photo last.
-- **Oct 18:** README, CLAUDE_CODE_LOG.md, final deploy, submit in the evening.
+- **Oct 18:** README, AI_USAGE_LOG.md, final deploy, submit in the evening.
 
 Rule: after every feature, check the Vercel deploy. If something breaks, go back to the last working
 commit. Never leave a half-done feature on `main`. If Tier 1 is not live by Oct 16 night, cut Tier 2.
@@ -181,7 +181,7 @@ commit. Never leave a half-done feature on `main`. If Tier 1 is not live by Oct 
 - [ ] GitHub repository link
 - [ ] Vercel live link
 - [ ] README (what it is, how to run, demo passcode, limits, how AI was used)
-- [ ] Brief description of how AI was used (from CLAUDE_CODE_LOG.md)
+- [ ] Brief description of how AI was used (from AI_USAGE_LOG.md)
 
 ## 12. Progress (updated Oct 15)
 
@@ -194,7 +194,8 @@ commit. Never leave a half-done feature on `main`. If Tier 1 is not live by Oct 
       average rating + CSV column for the admin, percentages that always add up to 100.
 - [x] Step 6 (Oct 17): Insights panel for the admin: recurring problems (same room + same category, 3 or more),
       the Pending complaint that has waited longest, and a room-by-room grid of open complaints.
-- [ ] Tier 2 left: before/after photo (recommended to CUT: it needs real photo storage, and localStorage is only about 5 MB)
+- [x] Before/after photo: CUT (Oct 17, my decision after Claude's advice). Photos already take most of the browser's
+      ~5 MB localStorage, and a half-working photo feature is worse than none. Tier 2 is complete without it.
 - [ ] README (screenshots, live link), final log entries, final deploy, submit on the evening of Oct 18
 
 ### How the Insights work (so the README can say it)

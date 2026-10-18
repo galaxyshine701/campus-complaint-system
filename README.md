@@ -9,6 +9,20 @@ Each complaint is a paper-style repair slip with a stamped status: Pending, In P
 - Student: press "Continue as Student" (a name is optional).
 - Admin: press "I am an admin" and enter the passcode `campus123`.
 
+## Screenshots
+
+**Student: new repair slip**
+
+![Student desk with the new repair slip form](docs/screenshots/01-student-form.png)
+
+**Admin: overview and statistics**
+
+![Admin overview with status totals and complaints by category](docs/screenshots/02-admin-overview.png)
+
+**Admin: insights, open complaints by room**
+
+![Admin insights showing open complaints per room](docs/screenshots/03-admin-insights.png)
+
 ## Features
 
 **Students**
